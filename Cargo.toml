@@ -2,5 +2,13 @@
 name = "chickenize"
 version = "0.1.1"
 authors = ["Deyan Ginev <d.ginev@jacobs-university.de>"]
+description = "Chickenize everything"
+repository = "https://github.com/dginev/rust-chickenize"
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
+
+[lib]
+name = "chickenize"
+
