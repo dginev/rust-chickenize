@@ -1,0 +1,6 @@
+[package]
+name = "chickenize"
+version = "0.1.0"
+authors = ["Deyan Ginev <d.ginev@jacobs-university.de>"]
+
+[dependencies]
