@@ -27,3 +27,15 @@ fn chickenize_math() {
   let math = "1 + 2 = 3";
   assert_eq!(math.chicken(), "chicken + chicken = chicken");
 }
+
+#[test]
+fn buffalo_string() {
+  let hello = "hello again, my friend.";
+  assert_eq!(hello.buffalo(), "buffalo buffalo, buffalo buffalo.");
+}
+
+#[test]
+fn anonymize_string() {
+  let hello = "hello again, my friend.";
+  assert_eq!(hello.anonymize("work"), "work work, work work.");
+}
