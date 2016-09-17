@@ -1,7 +1,23 @@
+mod loremipsum;
+
 static CHICKEN: &'static str = "chicken";
+static BUFFALO: &'static str = "buffalo";
+
 pub trait Chickenize {
   fn chicken(&self) -> String {
     String::from(CHICKEN)
+  }
+
+  fn buffalo(&self) -> String {
+    String::from(BUFFALO)
+  }
+
+  fn anonymize(&self, replacement: &str) -> String {
+    String::from(replacement)
+  }
+
+  fn lorem_ipsum(&self) -> String {
+    String::from("Lorem Ipsum")
   }
 }
 
@@ -20,15 +36,19 @@ impl Chickenize for usize {}
 impl Chickenize for f32 {}
 impl Chickenize for f64 {}
 
-impl<'a> Chickenize for &'a str {
-  fn chicken(&self) -> String {
-    let text_iterator = self.chars().peekable();
+// We are using an Anonymize macro here to avoid argument passing in runtime and keep
+//    the concrete (standard) chickenizations as performant as possible.
+#[macro_export]
+macro_rules! Anonymize(
+  ($text:expr, $replacement:expr) => (
+  {
+    let text_iterator = $text.chars().peekable();
     let mut chickenized = String::new();
     let mut seen_letter = false;
     for c in text_iterator {
       if !c.is_alphanumeric() {
         if seen_letter {
-          chickenized.push_str(CHICKEN);
+          chickenized.push_str($replacement);
           seen_letter = false;
         }
         chickenized.push(c);
@@ -36,17 +56,41 @@ impl<'a> Chickenize for &'a str {
         seen_letter = true;
       }
     }
-    // trailing words
     if seen_letter {
-      chickenized.push_str(CHICKEN);
+      chickenized.push_str($replacement);
     }
     return chickenized;
+  }
+  )
+);
+
+impl<'a> Chickenize for &'a str {
+  fn chicken(&self) -> String {
+    Anonymize!(self, CHICKEN)
+  }
+  fn buffalo(&self) -> String {
+    Anonymize!(self, BUFFALO)
+  }
+
+  fn anonymize(&self, replacement: &str) -> String {
+    Anonymize!(self, replacement)
+  }
+
+  fn lorem_ipsum(&self) -> String {
+    let mut li = loremipsum::Generator::default();
+    Anonymize!(self, li.next());
   }
 }
 
 impl Chickenize for String {
   fn chicken(&self) -> String {
     self.as_str().chicken()
+  }
+  fn buffalo(&self) -> String {
+    self.as_str().buffalo()
+  }
+  fn anonymize(&self, replacement: &str) -> String {
+    self.as_str().anonymize(replacement)
   }
 }
 
