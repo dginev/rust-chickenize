@@ -1,3 +1,5 @@
+mod loremipsum;
+
 static CHICKEN: &'static str = "chicken";
 static BUFFALO: &'static str = "buffalo";
 
@@ -12,6 +14,10 @@ pub trait Chickenize {
 
   fn anonymize(&self, replacement: &str) -> String {
     String::from(replacement)
+  }
+
+  fn lorem_ipsum(&self) -> String {
+    String::from("Lorem Ipsum")
   }
 }
 
@@ -68,6 +74,11 @@ impl<'a> Chickenize for &'a str {
 
   fn anonymize(&self, replacement: &str) -> String {
     Anonymize!(self, replacement)
+  }
+
+  fn lorem_ipsum(&self) -> String {
+    let mut li = loremipsum::Generator::default();
+    Anonymize!(self, li.next());
   }
 }
 

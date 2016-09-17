@@ -39,3 +39,9 @@ fn anonymize_string() {
   let hello = "hello again, my friend.";
   assert_eq!(hello.anonymize("work"), "work work, work work.");
 }
+
+#[test]
+fn lorem_ipsum_string() {
+  let hello = "hello again, my friend.";
+  assert_eq!(hello.lorem_ipsum(), "Lorem ipsum, dolor sit.");
+}
