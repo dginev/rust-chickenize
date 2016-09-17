@@ -1,7 +1,13 @@
-static CHICKEN: &'static str = "chicken";
+extern crate rand;
+use rand::{Rng, thread_rng};
+
 pub trait Chickenize {
-  fn chicken(&self) -> String {
-    String::from(CHICKEN)
+  fn chicken(&self, buffalo: &str) -> String {
+    String::from(buffalo)
+  }
+
+  fn buffalo_chicken(&self, buffalos: &[&str]) -> String {
+    String::from(*thread_rng().choose(buffalos).unwrap())
   }
 }
 
@@ -21,14 +27,19 @@ impl Chickenize for f32 {}
 impl Chickenize for f64 {}
 
 impl<'a> Chickenize for &'a str {
-  fn chicken(&self) -> String {
+  fn chicken(&self, buffalo: &str) -> String {
+    self.buffalo_chicken(&[buffalo])
+  }
+
+  fn buffalo_chicken(&self, buffalos: &[&str]) -> String {
+    let mut rng = thread_rng();
     let text_iterator = self.chars().peekable();
     let mut chickenized = String::new();
     let mut seen_letter = false;
     for c in text_iterator {
       if !c.is_alphanumeric() {
         if seen_letter {
-          chickenized.push_str(CHICKEN);
+          chickenized.push_str(rng.choose(buffalos).unwrap());
           seen_letter = false;
         }
         chickenized.push(c);
@@ -38,28 +49,42 @@ impl<'a> Chickenize for &'a str {
     }
     // trailing words
     if seen_letter {
-      chickenized.push_str(CHICKEN);
+      chickenized.push_str(rng.choose(buffalos).unwrap());
     }
     return chickenized;
   }
 }
 
 impl Chickenize for String {
-  fn chicken(&self) -> String {
-    self.as_str().chicken()
+  fn chicken(&self, buffalo: &str) -> String {
+    self.as_str().chicken(buffalo)
+  }
+
+  fn buffalo_chicken(&self, buffalos: &[&str]) -> String {
+    self.as_str().buffalo_chicken(buffalos)
   }
 }
 
 impl Chickenize for Vec<String> {
-  fn chicken(&self) -> String {
-    let chickenized_vec: Vec<String> = self.iter().map(|x| x.chicken()).collect();
+  fn chicken(&self, buffalo: &str) -> String {
+    let chickenized_vec: Vec<String> = self.iter().map(|x| x.chicken(buffalo)).collect();
+    chickenized_vec.join(" ")
+  }
+
+  fn buffalo_chicken(&self, buffalos: &[&str]) -> String {
+    let chickenized_vec: Vec<String> = self.iter().map(|x| x.buffalo_chicken(buffalos)).collect();
     chickenized_vec.join(" ")
   }
 }
 
 impl Chickenize for Vec<i32> {
-  fn chicken(&self) -> String {
-    let chickenized_vec: Vec<String> = self.iter().map(|x| x.chicken()).collect();
+  fn chicken(&self, buffalo: &str) -> String {
+    let chickenized_vec: Vec<String> = self.iter().map(|x| x.chicken(buffalo)).collect();
+    chickenized_vec.join(" ")
+  }
+
+  fn buffalo_chicken(&self, buffalos: &[&str]) -> String {
+    let chickenized_vec: Vec<String> = self.iter().map(|x| x.buffalo_chicken(buffalos)).collect();
     chickenized_vec.join(" ")
   }
 }
