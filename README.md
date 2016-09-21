@@ -1,6 +1,6 @@
 # Chickenize for Rust
 [![Build Status](https://secure.travis-ci.org/dginev/rust-chickenize.png?branch=master)](http://travis-ci.org/dginev/rust-chickenize)
-[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/dginev/rust-chickenize/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/dginev/rust-chickenize/master/LICENSE)
 [![crates.io](https://img.shields.io/crates/v/chickenize.svg)](https://crates.io/crates/chickenize)
 
 Chickenize everything
