@@ -78,7 +78,7 @@ impl<'a> Generator<'a> {
   pub fn default() -> Self {
     Generator { iter: LITEXT.iter().cycle() }
   }
-  pub fn next(&mut self) -> &str {
+  pub fn next_word(&mut self) -> &str {
     match self.iter.next() {
       Some(s) => s,
       None => "",

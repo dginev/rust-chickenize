@@ -59,7 +59,7 @@ macro_rules! Anonymize(
     if seen_letter {
       chickenized.push_str($replacement);
     }
-    return chickenized;
+    chickenized
   }
   )
 );
@@ -78,7 +78,7 @@ impl<'a> Chickenize for &'a str {
 
   fn lorem_ipsum(&self) -> String {
     let mut li = loremipsum::Generator::default();
-    Anonymize!(self, li.next());
+    Anonymize!(self, li.next_word())
   }
 }
 
