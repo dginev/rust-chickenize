@@ -36,10 +36,10 @@ anonymize.restype = c_char_p
 anonymize.argtypes = [c_char_p, c_char_p]
 
 
-fancy = "The Vice-president didn't like his style"
+example = "The Vice-president didn't like his style"
 
-print "\nChickenized:\n", chickenize(fancy)
-print "\nBuffalo:\n", buffalo(fancy)
-print "\nLorem:\n", lorem_ipsum(fancy)
-print "\nAnonymize (meow):\n", anonymize(fancy, "meow")
+print "\nChickenized:\n", chickenize(example)
+print "\nBuffalo:\n", buffalo(example)
+print "\nLorem:\n", lorem_ipsum(example)
+print "\nAnonymize (meow):\n", anonymize(example, "meow")
 print

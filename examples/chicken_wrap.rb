@@ -23,26 +23,21 @@ module Chickenize
   attach_function :anonymize, [:string,:string], :string
 end
 
-fancy = "The Vice-president didn't like his style"
-# currently Rust will deallocate input arguments, need to be careful
-#my fancy = master_fancy
+example = "The Vice-president didn't like his style"
 
 puts ""
 puts "Chickenized:"
-puts Chickenize.chickenize(fancy)
-#fancy = master_fancy
+puts Chickenize.chickenize(example)
 
 puts ""
 puts "Buffalo:"
-puts Chickenize.buffalo(fancy)
-#fancy = master_fancy
+puts Chickenize.buffalo(example)
 
 puts ""
 puts "Lorem:"
-puts Chickenize.lorem_ipsum(fancy)
-#fancy = master_fancy
+puts Chickenize.lorem_ipsum(example)
 
 puts ""
 puts "Anonymized (meow):"
-puts Chickenize.anonymize(fancy, "meow")
+puts Chickenize.anonymize(example, "meow")
 puts ""

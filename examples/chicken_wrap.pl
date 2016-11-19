@@ -19,21 +19,21 @@ $ffi->attach( buffalo => ['string'] => 'string' );
 $ffi->attach( lorem_ipsum => ['string'] => 'string' );
 $ffi->attach( anonymize => ['string','string'] => 'string' );
 
-my $fancy = "The Vice-president didn't like his style";
+my $example = "The Vice-president didn't like his style";
 
 say "";
 say "Chickenized:";
-say chickenize($fancy);
+say chickenize($example);
 
 say "";
 say "Buffalo:";
-say buffalo($fancy);
+say buffalo($example);
 
 say "";
 say "Lorem:";
-say lorem_ipsum($fancy);
+say lorem_ipsum($example);
 
 say "";
 say "Anonymized (meow):";
-say anonymize($fancy, "meow");
+say anonymize($example, "meow");
 say "";

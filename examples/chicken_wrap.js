@@ -14,9 +14,9 @@ var lib = ffi.Library('target/release/libchickenize', {
   'anonymize': [ 'string', [ 'string', 'string' ] ],
 });
 
-var fancy = "The Vice-president didn't like his style";
+var example = "The Vice-president didn't like his style";
 
-console.log("\nChickenized:\n", lib.chickenize(fancy));
-console.log("\nBuffalo:\n", lib.buffalo(fancy));
-console.log("\nLorem:\n", lib.lorem_ipsum(fancy));
-console.log("\nAnonymize (meow):\n", lib.anonymize(fancy, "meow"));
+console.log("\nChickenized:\n", lib.chickenize(example));
+console.log("\nBuffalo:\n", lib.buffalo(example));
+console.log("\nLorem:\n", lib.lorem_ipsum(example));
+console.log("\nAnonymize (meow):\n", lib.anonymize(example, "meow"));
