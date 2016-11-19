@@ -19,24 +19,19 @@ $ffi->attach( buffalo => ['string'] => 'string' );
 $ffi->attach( lorem_ipsum => ['string'] => 'string' );
 $ffi->attach( anonymize => ['string','string'] => 'string' );
 
-my $master_fancy = "The Vice-president didn't like his style";
-# currently Rust will deallocate input arguments, need to be careful
-my $fancy = $master_fancy;
+my $fancy = "The Vice-president didn't like his style";
 
 say "";
 say "Chickenized:";
 say chickenize($fancy);
-$fancy = $master_fancy;
 
 say "";
 say "Buffalo:";
 say buffalo($fancy);
-$fancy = $master_fancy;
 
 say "";
 say "Lorem:";
 say lorem_ipsum($fancy);
-$fancy = $master_fancy;
 
 say "";
 say "Anonymized (meow):";
