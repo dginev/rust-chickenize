@@ -24,3 +24,5 @@ let anonymized = example.anonymize("secret");
 let lorem_ipsum = example.lorem_ipsum();
 // lorem_ipsum == "Lorem ipsum-dolor sit'amet consectetur adipiscing elit."
 ```
+
+FFI wrappers are available under `examples`, inspired by the great [rust-ffi-examples](https://github.com/alexcrichton/rust-ffi-examples/) showcase.
