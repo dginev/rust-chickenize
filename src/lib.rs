@@ -1,3 +1,6 @@
+use std::ffi::{CStr,CString};
+use std::os::raw::c_char;
+
 mod loremipsum;
 
 static CHICKEN: &'static str = "chicken";
@@ -71,11 +74,9 @@ impl<'a> Chickenize for &'a str {
   fn buffalo(&self) -> String {
     Anonymize!(self, BUFFALO)
   }
-
   fn anonymize(&self, replacement: &str) -> String {
     Anonymize!(self, replacement)
   }
-
   fn lorem_ipsum(&self) -> String {
     let mut li = loremipsum::Generator::default();
     Anonymize!(self, li.next_word())
@@ -92,6 +93,9 @@ impl Chickenize for String {
   fn anonymize(&self, replacement: &str) -> String {
     self.as_str().anonymize(replacement)
   }
+  fn lorem_ipsum(&self) -> String {
+    self.as_str().lorem_ipsum()
+  }
 }
 
 impl Chickenize for Vec<String> {
@@ -106,4 +110,48 @@ impl Chickenize for Vec<i32> {
     let chickenized_vec: Vec<String> = self.iter().map(|x| x.chicken()).collect();
     chickenized_vec.join(" ")
   }
+}
+
+#[no_mangle]
+pub extern "C" fn chickenize(value: *const c_char) -> *mut c_char {
+  let c_value = unsafe { CStr::from_ptr(value) };
+  let chickenized = match c_value.to_str() {
+    Ok(value) => value.chicken(),
+    _ => String::new(),
+  };
+  CString::new(chickenized).unwrap().into_raw()
+}
+
+#[no_mangle]
+pub extern "C" fn buffalo(value: *const c_char) -> *mut c_char {
+  let c_value = unsafe { CStr::from_ptr(value) };
+  let buffalo = match c_value.to_str() {
+    Ok(value) => value.buffalo(),
+    _ => String::new(),
+  };
+  CString::new(buffalo).unwrap().into_raw()
+}
+
+#[no_mangle]
+pub extern "C" fn lorem_ipsum(value: *const c_char) -> *mut c_char {
+  let c_value = unsafe { CStr::from_ptr(value) };
+  let lorem_ipsum = match c_value.to_str() {
+    Ok(value) => value.lorem_ipsum(),
+    _ => String::new(),
+  };
+  CString::new(lorem_ipsum).unwrap().into_raw()
+}
+
+#[no_mangle]
+pub extern "C" fn anonymize(value: *const c_char, replacement: *const c_char) -> *mut c_char {
+  let c_value = unsafe { CStr::from_ptr(value) };
+  let c_replacement = unsafe { CStr::from_ptr(replacement) };
+  let anonymized = match c_value.to_str() {
+    Ok(value) => match c_replacement.to_str() {
+      Ok(replacement) => value.anonymize(replacement),
+      _ => String::new()
+    },
+    _ => String::new(),
+  };
+  CString::new(anonymized).unwrap().into_raw()
 }

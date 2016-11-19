@@ -11,4 +11,4 @@ license = "MIT"
 
 [lib]
 name = "chickenize"
-
+crate-type = ["rlib", "dylib"]
