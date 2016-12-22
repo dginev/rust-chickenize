@@ -1,7 +1,7 @@
-// If you want to try something cool, follow the instructions to install asm.js here:
+// If you want to try something cool, follow the instructions to install emscripten here:
 // https://users.rust-lang.org/t/compiling-to-the-web-with-rust-and-emscripten/7627
 //
-// and natively compile to JS via cargo:
+// and natively compile to asm.js via cargo:
 //
 // cargo build --release --target=asmjs-unknown-emscripten --example chicken_wrap
 //
