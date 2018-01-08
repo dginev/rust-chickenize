@@ -12,3 +12,11 @@ license = "MIT"
 [lib]
 name = "chickenize"
 crate-type = ["rlib", "dylib"]
+
+[[bin]]
+name = "chickenize"
+path = "bin/chickenize.rs"
+
+[[bin]]
+name = "loremize"
+path = "bin/loremize.rs"
