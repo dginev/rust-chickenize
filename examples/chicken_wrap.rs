@@ -14,20 +14,20 @@ use chickenize::*;
 fn main() {
   let example = "The Vice-president didn't like his style";
 
-  println!("");
+  println!();
   println!("Chickenized:");
   println!("{:?}", example.chicken());
 
-  println!("");
+  println!();
   println!("Buffalo:");
   println!("{:?}", example.buffalo());
 
-  println!("");
+  println!();
   println!("Lorem:");
   println!("{:?}", example.lorem_ipsum());
 
-  println!("");
+  println!();
   println!("Anonymized (meow):");
   println!("{:?}", example.anonymize("meow"));
-  println!("");
+  println!();
 }
