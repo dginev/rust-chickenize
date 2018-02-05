@@ -16,18 +16,18 @@ fn main() {
 
   println!("");
   println!("Chickenized:");
-  println!("{:?}",example.chicken());
+  println!("{:?}", example.chicken());
 
   println!("");
   println!("Buffalo:");
-  println!("{:?}",example.buffalo());
+  println!("{:?}", example.buffalo());
 
   println!("");
   println!("Lorem:");
-  println!("{:?}",example.lorem_ipsum());
+  println!("{:?}", example.lorem_ipsum());
 
   println!("");
   println!("Anonymized (meow):");
-  println!("{:?}",example.anonymize("meow"));
+  println!("{:?}", example.anonymize("meow"));
   println!("");
 }

@@ -18,9 +18,9 @@ fn main() {
     Box::new(io::stdin())
   } else {
     Box::new(fs::File::open(input).unwrap())
-  }; 
+  };
   let mut buffer = String::new();
   rdr.read_to_string(&mut buffer).unwrap_or_default();
-  
-  println!("{:?}",buffer.chicken())
+
+  println!("{:?}", buffer.chicken())
 }

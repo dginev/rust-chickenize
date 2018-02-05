@@ -10,8 +10,10 @@ fn chickenize_string() {
   assert_eq!(hello_string.chicken(), "chicken chicken!");
 
   let fancy = "The Vice-president didn't like his style";
-  assert_eq!(fancy.chicken(),
-             "chicken chicken-chicken chicken'chicken chicken chicken chicken");
+  assert_eq!(
+    fancy.chicken(),
+    "chicken chicken-chicken chicken'chicken chicken chicken chicken"
+  );
 }
 
 #[test]
@@ -50,18 +52,26 @@ fn lorem_ipsum_string() {
 fn readme_example_test() {
   let example = "The Vice-president didn't like his style.";
   let chickenized = example.chicken();
-  assert_eq!(chickenized,
-             "chicken chicken-chicken chicken'chicken chicken chicken chicken.");
+  assert_eq!(
+    chickenized,
+    "chicken chicken-chicken chicken'chicken chicken chicken chicken."
+  );
 
   let buffalaxed = example.buffalo();
-  assert_eq!(buffalaxed,
-             "buffalo buffalo-buffalo buffalo'buffalo buffalo buffalo buffalo.");
+  assert_eq!(
+    buffalaxed,
+    "buffalo buffalo-buffalo buffalo'buffalo buffalo buffalo buffalo."
+  );
 
   let anonymized = example.anonymize("secret");
-  assert_eq!(anonymized,
-             "secret secret-secret secret'secret secret secret secret.");
+  assert_eq!(
+    anonymized,
+    "secret secret-secret secret'secret secret secret secret."
+  );
 
   let lorem_ipsum = example.lorem_ipsum();
-  assert_eq!(lorem_ipsum,
-             "Lorem ipsum-dolor sit'amet consectetur adipiscing elit.");
+  assert_eq!(
+    lorem_ipsum,
+    "Lorem ipsum-dolor sit'amet consectetur adipiscing elit."
+  );
 }
