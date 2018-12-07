@@ -1,6 +1,7 @@
 [package]
 name = "chickenize"
 version = "0.3.2"
+edition = "2018"
 authors = ["Deyan Ginev <d.ginev@jacobs-university.de>"]
 description = "Chickenize everything"
 repository = "https://github.com/dginev/rust-chickenize"
