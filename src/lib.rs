@@ -78,14 +78,14 @@ impl Chickenize for String {
 
 impl Chickenize for Vec<String> {
   fn chicken(&self) -> String {
-    let chickenized_vec: Vec<String> = self.iter().map(|x| x.chicken()).collect();
+    let chickenized_vec: Vec<String> = self.iter().map(Chickenize::chicken).collect();
     chickenized_vec.join(" ")
   }
 }
 
 impl Chickenize for Vec<i32> {
   fn chicken(&self) -> String {
-    let chickenized_vec: Vec<String> = self.iter().map(|x| x.chicken()).collect();
+    let chickenized_vec: Vec<String> = self.iter().map(Chickenize::chicken).collect();
     chickenized_vec.join(" ")
   }
 }
@@ -121,11 +121,7 @@ pub unsafe extern "C" fn lorem_ipsum(value: *const c_char) -> *mut c_char {
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn anonymize(
-  value: *const c_char,
-  replacement: *const c_char,
-) -> *mut c_char
-{
+pub unsafe extern "C" fn anonymize(value: *const c_char, replacement: *const c_char) -> *mut c_char {
   let c_value = CStr::from_ptr(value);
   let c_replacement = CStr::from_ptr(replacement);
   let anonymized = match c_value.to_str() {

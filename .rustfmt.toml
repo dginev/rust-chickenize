@@ -1,9 +1,11 @@
 # Detailed instructions at: https://github.com/rust-lang-nursery/rustfmt/blob/master/Configurations.md
-max_width = 100
-comment_width = 100
-wrap_comments = true
+max_width = 151
+comment_width = 150
 match_block_trailing_comma = true
+wrap_comments = true
 fn_single_line = true
 where_single_line = true
 tab_spaces = 2
-error_on_line_overflow = false
+error_on_line_overflow = true
+error_on_unformatted = true
+edition = "2018"
