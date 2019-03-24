@@ -9,10 +9,14 @@ readme = "README.md"
 license = "MIT"
 
 [dependencies]
+wasm-bindgen = "0.2"
+
+[dev-dependencies]
+wasm-bindgen-test = "0.2"
 
 [lib]
 name = "chickenize"
-crate-type = ["rlib", "dylib"]
+crate-type = ["cdylib", "rlib", "dylib"]
 
 [[bin]]
 name = "chickenize"

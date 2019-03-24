@@ -1,5 +1,6 @@
 use std::ffi::{CStr, CString};
 use std::os::raw::c_char;
+use wasm_bindgen::prelude::*;
 
 mod loremipsum;
 
@@ -7,13 +8,21 @@ static CHICKEN: &'static str = "chicken";
 static BUFFALO: &'static str = "buffalo";
 
 pub trait Chickenize {
-  fn chicken(&self) -> String { String::from(CHICKEN) }
+  fn chicken(&self) -> String {
+    String::from(CHICKEN)
+  }
 
-  fn buffalo(&self) -> String { String::from(BUFFALO) }
+  fn buffalo(&self) -> String {
+    String::from(BUFFALO)
+  }
 
-  fn anonymize(&self, replacement: &str) -> String { String::from(replacement) }
+  fn anonymize(&self, replacement: &str) -> String {
+    String::from(replacement)
+  }
 
-  fn lorem_ipsum(&self) -> String { String::from("Lorem Ipsum") }
+  fn lorem_ipsum(&self) -> String {
+    String::from("Lorem Ipsum")
+  }
 }
 
 impl Chickenize for bool {}
@@ -60,9 +69,15 @@ macro_rules! Anonymize(
 );
 
 impl<'a> Chickenize for &'a str {
-  fn chicken(&self) -> String { Anonymize!(self, CHICKEN) }
-  fn buffalo(&self) -> String { Anonymize!(self, BUFFALO) }
-  fn anonymize(&self, replacement: &str) -> String { Anonymize!(self, replacement) }
+  fn chicken(&self) -> String {
+    Anonymize!(self, CHICKEN)
+  }
+  fn buffalo(&self) -> String {
+    Anonymize!(self, BUFFALO)
+  }
+  fn anonymize(&self, replacement: &str) -> String {
+    Anonymize!(self, replacement)
+  }
   fn lorem_ipsum(&self) -> String {
     let mut li = loremipsum::Generator::default();
     Anonymize!(self, li.next_word())
@@ -70,10 +85,18 @@ impl<'a> Chickenize for &'a str {
 }
 
 impl Chickenize for String {
-  fn chicken(&self) -> String { self.as_str().chicken() }
-  fn buffalo(&self) -> String { self.as_str().buffalo() }
-  fn anonymize(&self, replacement: &str) -> String { self.as_str().anonymize(replacement) }
-  fn lorem_ipsum(&self) -> String { self.as_str().lorem_ipsum() }
+  fn chicken(&self) -> String {
+    self.as_str().chicken()
+  }
+  fn buffalo(&self) -> String {
+    self.as_str().buffalo()
+  }
+  fn anonymize(&self, replacement: &str) -> String {
+    self.as_str().anonymize(replacement)
+  }
+  fn lorem_ipsum(&self) -> String {
+    self.as_str().lorem_ipsum()
+  }
 }
 
 impl Chickenize for Vec<String> {
@@ -132,4 +155,35 @@ pub unsafe extern "C" fn anonymize(value: *const c_char, replacement: *const c_c
     _ => String::new(),
   };
   CString::new(anonymized).unwrap().into_raw()
+}
+
+// TODO: Can one expose traits to WASM ?
+#[wasm_bindgen]
+pub fn wasm_str_chicken(value: &str) -> String {
+  value.chicken()
+}
+
+#[wasm_bindgen]
+pub fn wasm_string_chicken(value: String) -> String {
+  value.chicken()
+}
+
+#[wasm_bindgen]
+pub fn wasm_vec_chicken(value: Vec<i32>) -> String {
+  value.chicken()
+}
+
+#[wasm_bindgen]
+pub fn wasm_str_buffalo(value: &str) -> String {
+  value.buffalo()
+}
+
+// #[wasm_bindgen]
+// pub fn wasm_str_anon(value: &str, with: &str) -> String {
+//   value.anonymize(with)
+// }
+
+#[wasm_bindgen]
+pub fn wasm_str_lorem(value: &str) -> String {
+  value.lorem_ipsum()
 }
