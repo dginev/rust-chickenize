@@ -16,7 +16,7 @@ wasm-bindgen-test = "0.2"
 
 [lib]
 name = "chickenize"
-crate-type = ["cdylib", "rlib", "dylib"]
+crate-type = ["cdylib","rlib"]
 
 [[bin]]
 name = "chickenize"

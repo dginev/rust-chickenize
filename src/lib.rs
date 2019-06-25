@@ -4,8 +4,8 @@ use wasm_bindgen::prelude::*;
 
 mod loremipsum;
 
-static CHICKEN: &'static str = "chicken";
-static BUFFALO: &'static str = "buffalo";
+static CHICKEN: &str = "chicken";
+static BUFFALO: &str = "buffalo";
 
 pub trait Chickenize {
   fn chicken(&self) -> String {

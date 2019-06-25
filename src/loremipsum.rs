@@ -1,7 +1,7 @@
 use std::iter::Cycle;
 use std::slice::Iter;
 
-static LITEXT: &'static [&'static str] = &[
+static LITEXT: &[&str] = &[
   "Lorem",
   "ipsum",
   "dolor",
@@ -77,7 +77,9 @@ pub struct Generator<'a> {
   iter: Cycle<Iter<'a, &'a str>>,
 }
 impl<'a> Generator<'a> {
-  pub fn default() -> Self { Generator { iter: LITEXT.iter().cycle() } }
+  pub fn default() -> Self {
+    Generator { iter: LITEXT.iter().cycle() }
+  }
   pub fn next_word(&mut self) -> &str {
     match self.iter.next() {
       Some(s) => s,
