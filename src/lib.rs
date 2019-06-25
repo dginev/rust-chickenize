@@ -3,8 +3,8 @@ use std::os::raw::c_char;
 
 mod loremipsum;
 
-static CHICKEN: &'static str = "chicken";
-static BUFFALO: &'static str = "buffalo";
+static CHICKEN: &str = "chicken";
+static BUFFALO: &str = "buffalo";
 
 pub trait Chickenize {
   fn chicken(&self) -> String { String::from(CHICKEN) }

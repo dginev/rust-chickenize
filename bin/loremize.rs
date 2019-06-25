@@ -14,7 +14,7 @@ use std::io;
 /// A loremize utility - turn a given text into a lorem ipsum stub
 fn main() {
   let input = env::args().nth(1).unwrap();
-  let mut rdr: Box<io::Read> = if input == "-" {
+  let mut rdr: Box<dyn io::Read> = if input == "-" {
     Box::new(io::stdin())
   } else {
     Box::new(fs::File::open(input).unwrap())
